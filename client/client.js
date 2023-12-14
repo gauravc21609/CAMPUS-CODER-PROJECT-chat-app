@@ -1,9 +1,11 @@
 const socket = io('http://localhost:8000');
 
 const from = document.getElementById('send-container');
-const messageInput = document.getElementById('messageInp')
-const messageContainer = document.querySelector(".container")
+const messageInput = document.getElementById('messageInp');
+const messageContainer = document.querySelector(".container");
 var audio = new Audio('ding-idea.mp3');
+
+
 
 const append = (message, postion) =>{
   const messageElement = document.createElement('div');
