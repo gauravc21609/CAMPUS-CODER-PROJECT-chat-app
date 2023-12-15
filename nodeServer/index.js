@@ -1,24 +1,21 @@
 //Node sever which will handle socket.io connections.
 // const express = require ('express')
 // const app = express()
-const http = require('http').createServer(app)
+const http = require('http').createServer()
 
-// const PORT = process.env.PORT ||8000
 const io = require('socket.io')(8000)
+const PORT = 4900
 
 http.listen(PORT,() =>{
    console.log(`Listening on port ${PORT}` )
 })
-
-// app.get('/', (req, res) =>{
-//    res.send('hello world')
-// })
 
 const users = {};
 
   // if any new user join the chat, let other users connected to server know.
 io.on('connection', socket =>{
     socket.on('new-user-joined', name =>{
+      console.log('new-user-joined', name);
       users[socket.id] = name;
       socket.broadcast.emit('user-joined', name);
     });
