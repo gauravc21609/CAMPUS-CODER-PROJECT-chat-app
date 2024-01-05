@@ -1,6 +1,6 @@
 //Node sever which will handle socket.io connections.
-// const express = require ('express')
-// const app = express()
+
+
 const http = require('http').createServer()
 
 const io = require('socket.io')(8000)

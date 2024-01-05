@@ -1,4 +1,6 @@
-const socket = io('http://localhost:8000');
+//client.js
+const io = require('socket.io');
+const socket = io('http://localhost:8000', {reconnect: true});
 
 const form = document.getElementById('send-container');
 const messageInput = document.getElementById('messageInp');
@@ -26,17 +28,17 @@ form.addEventListener('submit', (e) => {
   messageInput.value = ''
 })
 
-const name = prompt( "Enter your name to join");
+const naam = prompt( "Enter your name to join");
 socket.emit('new-user-joined', naam);
 
-Socket.on('user-joined', naam =>{
+socket.on('user-joined', naam =>{
   append('${naam} joined the Chat', 'right')
 })
 
-Socket.on('receive', data =>{
+socket.on('receive', data =>{
   append('${data.naam}: ${data.message}', 'left')
 })
 
-Socket.on('left', name =>{
+socket.on('left', name =>{
   append('${data.naam} left the chat', 'left')
 })
